@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
 	// constants used to control the speed of movements, turns, jumps, etc.
 	const float SPEED = 1.5f;
 	const float FORWARD_FORCE = 2f;
-	const float JUMP = 2000f;
+	const float JUMP = 2500f;
 	const float TURN_SPEED = 20f;
 
 	// controls messages to be passed to the game console
@@ -50,7 +50,7 @@ public class PlayerScript : MonoBehaviour {
 		}
 		controlCollection();
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space) && rigidbody.velocity.y < 1f) {
 			rigidbody.AddForce(transform.up * JUMP);
 		}
 		if (collected == 2) {
