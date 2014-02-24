@@ -4,10 +4,11 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 
 	// constants used to control the speed of movements, turns, jumps, etc.
-	const float SPEED = 1.5f;
-	const float FORWARD_FORCE = 2f;
+	const float SPEED = 2.5f;
+	const float FORWARD_FORCE = 3f;
 	const float JUMP = 2500f;
 	const float TURN_SPEED = 20f;
+	const float JUMP_ALLOWANCE_INTERVAL = 0.5f;
 
 	// controls messages to be passed to the game console
 	int nextmessageptr = 0;
@@ -15,7 +16,7 @@ public class PlayerScript : MonoBehaviour {
 		"Hello, and welcome to my world!", 
 		"You can move your character with the WASD controls.", 
 		"You can also turn yourself left and right with [ Q ] or [ E ].", 
-		"Use [ Space ] to jump.", 
+		"Press [ Space ] to jump.", 
 		"In this game, you must collect all spheres!",
 		"Press [ P ] on a sphere to collect it.",
 		"There are two spheres in total.", 
@@ -50,11 +51,12 @@ public class PlayerScript : MonoBehaviour {
 		}
 		controlCollection();
 
-		if (Input.GetKeyDown(KeyCode.Space) && rigidbody.velocity.y < 1f) {
+		if (Input.GetKeyDown(KeyCode.Space) && rigidbody.velocity.y < JUMP_ALLOWANCE_INTERVAL && rigidbody.velocity.y > -1f * JUMP_ALLOWANCE_INTERVAL) {
 			rigidbody.AddForce(transform.up * JUMP);
 		}
 		if (collected == 2) {
 			if (!gamecomplete) {
+				timeElapsed = 0f;
 				textscript.input_text = "Congratulations! You have collected all the spheres.";
 			}
 			gamecomplete = true;
