@@ -33,5 +33,6 @@ public class BallScript : MonoBehaviour {
 		else if (collision.contacts[0].thisCollider == wall_z2.collider) {
 			rigidbody.AddForce(-Vector3.right * BOUNCE_FORCE, ForceMode.VelocityChange);
 		}
+		audio.Play();
 	}
 }
