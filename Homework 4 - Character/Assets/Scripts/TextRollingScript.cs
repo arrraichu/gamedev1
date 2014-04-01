@@ -7,6 +7,7 @@ public class TextRollingScript : MonoBehaviour {
 
 	const float TEXT_ROLLING_SPEED = 0.025f;
 
+	// some other script will input add messages into this string
 	public string input_text = null;
 	bool ready_to_receive_output = true;
 
